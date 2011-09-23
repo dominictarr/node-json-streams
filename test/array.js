@@ -26,14 +26,14 @@ while (i --) {
     : [1,4,42,{oaeu: 'rcgrg'}]
   )
 }
-var json = JSON.stringify(array)
+var json = JSON.stringify({arrar: array})
 
 console.log('parsing %s\n\n', json);
 
-var p = new ParseStream();
-p.on('end', function(o) {
-    console.log('result object', o);
-    var res = JSON.stringify(o);
+var p = new ParseStream(true);
+p.on('end', function() {
+    console.log('result object', p._object);
+    var res = JSON.stringify(p._object);
     assert.equal(res, json, "the objects are not identical");
     console.log('ignored', this._ignored);
     console.log('queue', this._queue);
